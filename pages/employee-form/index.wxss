@@ -1,0 +1,2 @@
+﻿@import "../../utils/autopay/common.wxss";
+.screen-scroll { height: 100vh; }

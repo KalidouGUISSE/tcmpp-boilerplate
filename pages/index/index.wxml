@@ -1,89 +1,17 @@
-<view class="d-flex flex-column w-100" style="min-height: 100vh; background: #f8f9fa;">
-  <!-- Custom Navigation Bar -->
-  <app-nav-bar title="TCMPP Boilerplate" showBack="{{ false }}" />
-
-  <!-- Page Content -->
-  <view class="d-flex flex-column gap-3 p-3" style="flex: 1;">
-
-    <!-- Welcome Section -->
-    <view class="d-flex flex-column gap-2" style="padding: 32rpx 0;">
-      <app-typography size="24" weight="700" color="#333">
-        Welcome, {{ userName }}
-      </app-typography>
-
-      <app-typography size="14" color="#666">
-        This boilerplate provides production-ready patterns for TCMPP mini-apps.
-      </app-typography>
-    </view>
-
-    <!-- Feature Cards -->
-    <app-card>
-      <view class="d-flex flex-column gap-2 p-3">
-        <app-typography size="16" weight="600" color="#333">
-          EventBus State Management
-        </app-typography>
-        <app-typography size="13" color="#666">
-          Cross-page communication with state history, middleware, and namespaces.
-        </app-typography>
-      </view>
-    </app-card>
-
-    <app-card>
-      <view class="d-flex flex-column gap-2 p-3">
-        <app-typography size="16" weight="600" color="#333">
-          HTTP Client + Auth
-        </app-typography>
-        <app-typography size="13" color="#666">
-          Session tracking, auto-authentication, unified response format.
-        </app-typography>
-      </view>
-    </app-card>
-
-    <app-card>
-      <view class="d-flex flex-column gap-2 p-3">
-        <app-typography size="16" weight="600" color="#333">
-          Data Transformation (Sculpt)
-        </app-typography>
-        <app-typography size="13" color="#666">
-          Declarative JSON mapping for clean API response transformation.
-        </app-typography>
-      </view>
-    </app-card>
-
-    <!-- Action Buttons -->
-    <view class="d-flex flex-column gap-2" style="margin-top: 16rpx;">
-      <app-button type="primary" bind:onPress="handleNavigateDemo">
-        View Component Demo
-      </app-button>
-
-      <app-button type="secondary" bind:onPress="handleToggleModal">
-        Open Modal
-      </app-button>
-    </view>
-  </view>
-
-  <!-- Modal Demo -->
-  <app-modal
-    visible="{{ showModal }}"
-    placement="center"
-    size="md"
-    hasHeader="{{ true }}"
-    hasContent="{{ true }}"
-    hasFooter="{{ true }}"
-    bind:close="handleCloseModal"
-  >
-    <view slot="header">
-      <app-typography size="16" weight="700">Modal Title</app-typography>
-    </view>
-    <view slot="content">
-      <app-typography size="14" color="#666">
-        This is a reusable modal component. It supports center and bottom sheet placement, backdrop blur, and header/content/footer slots.
-      </app-typography>
-    </view>
-    <view slot="footer">
-      <app-button type="primary" bind:onPress="handleCloseModal">
-        Close
-      </app-button>
-    </view>
-  </app-modal>
+<view class="app-shell">
+  <app-nav-bar title="Accueil" showBack="{{ false }}" />
+  <scroll-view class="screen-scroll" scroll-y="true" enhanced="true" show-scrollbar="false">
+    <view class="demo-banner"><text class="demo-dot">●</text><text>MODE DÉMONSTRATION · AUCUN TRANSFERT RÉEL</text></view>
+    <view class="brand-header"><view class="brand-mark">✿</view><view class="brand-name">Max it <text>AutoPay</text></view><view class="notification" bindtap="openFailures">♧<text wx:if="{{lateCount}}" class="notification-count">{{lateCount}}</text></view></view>
+    <view class="welcome"><text class="title">Bonjour, {{userName}} 👋</text><text class="muted">Votre équipe travaille, vous avancez.</text></view>
+    <view class="balance-card"><view class="balance-kicker">Budget récurrent mensuel estimé</view><view class="balance-amount">{{monthTotal}} <text>FCFA</text></view><view class="balance-foot"><text class="people-icon">♟</text>{{activeCount}} bénéficiaires actifs</view></view>
+    <view wx:if="{{nextPayment}}" class="next-card" data-id="{{nextPayment.id}}" bindtap="openPayment"><view><text class="card-label">Prochaine échéance</text><text class="next-date">{{nextPayment.dateLabel}}</text><text class="muted small">{{nextPayment.name}} · {{nextPayment.amountLabel}} FCFA</text></view><view class="calendar-icon">▦</view></view>
+    <view class="stats-row"><view class="stat-card"><text class="stat-number">{{activeCount}}</text><text class="stat-label">Employés</text></view><view class="stat-card"><text class="stat-number">{{upcomingCount}}</text><text class="stat-label">À venir</text></view><view class="stat-card alert-stat" bindtap="openFailures"><text class="stat-number">{{lateCount}}</text><text class="stat-label">À vérifier</text></view></view>
+    <button class="primary-button main-cta" bindtap="openSchedule">＋ Programmer un paiement</button>
+    <view class="section-heading"><text>Paiements à venir</text></view>
+    <view wx:if="{{payments.length === 0}}" class="empty-card"><text class="empty-icon">▦</text><text class="empty-title">Aucun paiement programmé</text><text class="muted">Commencez par créer votre première échéance.</text><button class="outline-button" bindtap="openSchedule">Ajouter mon premier paiement</button></view>
+    <view class="payment-row" wx:for="{{payments}}" wx:key="id" data-id="{{item.id}}" bindtap="openPayment"><view class="avatar">{{item.avatarText}}</view><view class="row-main"><text class="row-title">{{item.name}}</text><text class="row-sub">{{item.amountLabel}} FCFA · {{item.dateLabel}}</text></view><text class="badge badge-green">{{item.statusLabel}}</text></view>
+    <view class="quick-link" bindtap="openEmployees"><text class="quick-icon">♙</text><text>Gérer mes employés</text><text class="chevron">›</text></view>
+  </scroll-view>
+  <autopay-tabs active="home" />
 </view>

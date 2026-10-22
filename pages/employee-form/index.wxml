@@ -1,0 +1,14 @@
+<view class="app-shell">
+  <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
+    <view class="demo-banner">MODE DÉMONSTRATION · AUCUN TRANSFERT RÉEL</view>
+    <view class="page-header"><view class="back-button" bindtap="back">‹</view><text class="page-title">{{editing ? 'Modifier un employé' : 'Ajouter un employé'}}</text></view>
+    <view class="form-content"><view class="photo-placeholder">◎</view><text class="photo-caption">Photo facultative</text>
+      <view class="field"><text class="field-label">Nom complet <text class="required">*</text></text><input class="text-input" placeholder="Ex. : Aminata Diallo" value="{{form.name}}" data-field="name" bindinput="input" /></view>
+      <view class="field"><text class="field-label">Numéro de téléphone <text class="required">*</text></text><input class="text-input" type="text" placeholder="+221 77 123 45 67" value="{{form.phone}}" data-field="phone" bindinput="input" /></view>
+      <view class="field"><text class="field-label">Montant habituel <text class="required">*</text></text><view class="amount-input"><input type="digit" placeholder="Ex. : 100 000" value="{{form.amount}}" data-field="amount" bindinput="input"/><text>FCFA</text></view></view>
+      <view class="field"><text class="field-label">Fréquence habituelle</text><picker mode="selector" range="{{frequencyOptions}}" value="{{form.frequency === 'Hebdomadaire' ? 0 : 1}}" bindchange="chooseFrequency"><view class="select-input">{{form.frequency}}<text>⌄</text></view></picker></view>
+      <view class="field"><text class="field-label">Informations supplémentaires</text><input class="text-input" placeholder="Email (facultatif)" value="{{form.email}}" data-field="email" bindinput="input" /></view>
+    </view>
+  </scroll-view>
+  <button class="primary-button bottom-action" bindtap="save">{{editing ? 'Enregistrer les modifications' : 'Enregistrer le bénéficiaire'}}</button>
+</view>

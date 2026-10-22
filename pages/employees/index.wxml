@@ -1,0 +1,12 @@
+<view class="app-shell">
+  <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
+    <view class="demo-banner">MODE DÉMONSTRATION · AUCUN TRANSFERT RÉEL</view>
+    <view class="page-header"><view class="back-button" bindtap="back">‹</view><text class="page-title">Mes employés</text><text class="header-count">{{activeCount}} actifs</text></view>
+    <view class="search-box"><text class="search-icon">⌕</text><input placeholder="Rechercher un employé..." value="{{query}}" bindinput="onSearch" /></view>
+    <view class="section-caption">{{totalCount}} bénéficiaire(s)</view>
+    <view wx:if="{{employees.length === 0}}" class="empty-card"><text class="empty-icon">♙</text><text class="empty-title">{{totalCount ? 'Aucun résultat' : 'Aucun bénéficiaire'}}</text><text class="muted">{{totalCount ? 'Essayez un autre nom ou numéro.' : 'Ajoutez votre premier bénéficiaire pour commencer.'}}</text><button wx:if="{{!totalCount}}" class="outline-button" bindtap="addEmployee">Ajouter un employé</button></view>
+    <view class="employee-row" wx:for="{{employees}}" wx:key="id"><view class="avatar large">{{item.avatarText}}</view><view class="row-main"><view class="employee-title-line"><text class="row-title">{{item.name}}</text><text class="badge {{item.active ? 'badge-green' : 'badge-gray'}}">{{item.active ? 'Actif' : 'Suspendu'}}</text></view><text class="row-sub">{{item.phone}}</text><text class="row-sub">{{item.amountLabel}} FCFA · {{item.frequency}}</text><text class="row-sub">Prochaine échéance : le {{item.day}}</text><view class="employee-actions"><text wx:if="{{item.active}}" class="link" data-id="{{item.id}}" bindtap="schedule">Programmer</text><text class="link subdued" data-id="{{item.id}}" bindtap="editEmployee">Modifier</text><text class="link subdued" data-id="{{item.id}}" bindtap="toggleEmployee">{{item.active ? 'Suspendre' : 'Réactiver'}}</text></view></view></view>
+    <button class="primary-button sticky-action" bindtap="addEmployee">＋ Ajouter un employé</button>
+  </scroll-view>
+  <autopay-tabs active="employees" />
+</view>

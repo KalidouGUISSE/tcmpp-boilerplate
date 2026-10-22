@@ -1,0 +1,13 @@
+<view class="app-shell">
+  <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
+    <view class="demo-banner">MODE DÉMONSTRATION · AUCUN TRANSFERT RÉEL</view>
+    <view class="page-header"><view class="back-button" bindtap="back">‹</view><text class="page-title">Détail du paiement</text></view>
+    <view wx:if="{{payment}}">
+      <view class="detail-status {{payment.statusClass}}">{{payment.statusLabel}}</view>
+      <view class="summary-person detail-person"><view class="avatar large">{{payment.avatarText}}</view><view><text class="row-title">{{payment.name}}</text><text class="row-sub">{{payment.phone}}</text></view></view>
+      <view class="detail-card"><view class="summary-line"><text>Montant</text><text>{{payment.amountLabel}} FCFA</text></view><view class="summary-line"><text>Frais</text><text>{{payment.fee === 0 ? '0 FCFA' : 'À confirmer'}}</text></view><view class="summary-line"><text>Date</text><text>{{payment.dateLabel}}</text></view><view class="summary-line"><text>Référence de démonstration</text><text>{{payment.ref}}</text></view><view class="summary-line"><text>Origine</text><text>{{payment.mode}}</text></view><view wx:if="{{payment.reason}}" class="summary-line"><text>Motif</text><text>{{payment.reason}}</text></view></view>
+      <view class="mode-note">Cette fiche décrit une donnée de démonstration. Elle ne constitue ni un reçu ni une preuve de transfert.</view>
+    </view>
+  </scroll-view>
+  <button class="primary-button bottom-action" bindtap="back">Retour</button>
+</view>

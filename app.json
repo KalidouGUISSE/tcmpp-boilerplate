@@ -1,6 +1,14 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/employees/index",
+    "pages/employee-form/index",
+    "pages/schedule/index",
+    "pages/confirmation/index",
+    "pages/calendar/index",
+    "pages/history/index",
+    "pages/payment-detail/index",
+    "pages/failures/index",
     "pages/demo/index"
   ],
   "style": "v2",

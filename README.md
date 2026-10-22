@@ -1,109 +1,57 @@
-# TCMPP Boilerplate
+# Max it AutoPay
 
-A production-ready foundation for building TCMPP (Tencent Cloud Mini Program Platform) mini-apps. Clone it, configure it, start building.
+Mini-application TCMPP en JavaScript, WXML et WXSS pour organiser des paiements récurrents. Le parcours est conçu pour une démonstration mobile : bénéficiaires, échéances, calendrier, historique et vérification des incidents.
 
-## What You Get
+> **Mode démonstration :** les bénéficiaires, paiements, références et résultats sont fictifs. Aucune transaction ni aucun transfert réel n'est exécuté.
 
-- **EventBus** — Cross-page state management and event system with middleware, replay, and history
-- **HTTP Client** — Session-tracked API client with all HTTP verbs and unified response format
-- **OAuth2 Auth** — Client credentials flow with token caching and auto-refresh
-- **Native Plugin Service** — Typed `wx.invokeNativePlugin` wrappers with retry and backoff
-- **JSON Sculpt** — Declarative API response transformation engine
-- **13+ UI Components** — Button, Modal, Nav Bar, Stepper, Input, Typography, and more
-- **Behaviors** — Shared loading/error state mixins for pages and components
-- **WXS Filters** — View-thread template filters for fast display logic
-- **Navigation Helpers** — Safe wrappers around all 5 wx navigation methods
-- **Storage Wrapper** — Error-safe local storage operations
-- **Utility CSS** — Bootstrap-derived flexbox, spacing, and layout classes
+## Lancer l'application
 
-## Quick Start
+1. Ouvrir le dossier du projet dans TCMPP Developer Tools.
+2. Compiler et prévisualiser sur simulateur ou appareil.
+3. Utiliser les quatre entrées de navigation en bas de l'écran : Accueil, Employés, Calendrier et Historique.
 
-1. **Install** [TCMPP Developer Tools](https://cloud.tencent.com/product/tcmpp)
-2. Clone this repo
-3. Open the project folder in TCMPP DevTools
-4. The mini-program compiles and renders automatically
+Les données de démonstration sont conservées localement. Utiliser le stockage de la mini-application pour réinitialiser les données après une présentation.
 
-> First time with mini-programs? Start with [Mini-Program Concepts](docs/01-mini-program-concepts.md).
+## Parcours de démonstration
 
-## Project Structure
+1. Le tableau de bord présente le budget récurrent estimé, les bénéficiaires actifs et les prochaines échéances.
+2. Depuis **Programmer un paiement**, choisir un bénéficiaire actif, un montant, une fréquence et des dates.
+3. Vérifier le récapitulatif et accepter explicitement le mode démonstration.
+4. Consulter l'échéance créée dans le calendrier, puis l'historique et le détail d'une opération.
+5. Dans **À vérifier**, vérifier d'abord le paiement échoué. La nouvelle tentative disponible ensuite est elle aussi simulée.
 
-```
-tcmpp-boilerplate/
-├── app.js                    # App entry: init, EventBus, error handlers, network
-├── app.json                  # Routes, window config, permissions
-├── app.wxss                  # Global styles (Bootstrap-derived utilities)
-├── project.config.json       # TCMPP DevTools settings
-│
-├── pages/                    # Application pages
-│   ├── index/                # Home page (initPromise, EventBus demo)
-│   └── demo/                 # Demo page (stepper, modal, WXS, Behavior)
-│
-├── components/               # Reusable components
-│   ├── ui/                   # UI library (button, modal, nav-bar, etc.)
-│   ├── forms/                # Form components (placeholder)
-│   └── ux/                   # UX components (placeholder)
-│
-├── utils/                    # Utility modules
-│   ├── apis/                 # HTTP client, auth, native plugins, BackendAPI
-│   ├── event/                # EventBus (state management + pub/sub)
-│   ├── json-sculpt/          # Declarative data transformation engine
-│   ├── constants/            # Centralized app constants
-│   ├── formatters/           # Date, price, string formatters
-│   ├── helpers/              # Page helpers, navigation helpers
-│   ├── behaviors/            # Shared Behavior() mixins
-│   ├── wxs/                  # WXS template filters
-│   ├── mappers/              # Sculpt schema definitions
-│   ├── config.js             # Environment configuration (dev/prod)
-│   └── storage.js            # Safe wx storage wrapper
-│
-├── types/                    # JSDoc type definitions
-└── typings/                  # WeChat API TypeScript definitions
-```
+L'application permet également d'ajouter, modifier, rechercher et suspendre des bénéficiaires. Elle vérifie les champs obligatoires, le numéro, le montant et l'ordre des dates.
 
-## Learning Path
+## Organisation
 
-| Step | Topic | Link |
-|------|-------|------|
-| 1 | Mini-program fundamentals | [Mini-Program Concepts](docs/01-mini-program-concepts.md) |
-| 2 | How this project is structured | [Project Architecture](docs/02-project-architecture.md) |
-| 3 | Setup and first run | [Getting Started](docs/03-getting-started.md) |
-| 4 | app.js deep dive | [App Lifecycle](docs/04-app-lifecycle.md) |
-| 5 | State management | [EventBus Guide](docs/05-eventbus-guide.md) |
-| 6 | Making API calls | [API Layer](docs/06-api-layer.md) |
-| 7 | Data transformation | [JSON Sculpt Guide](docs/07-json-sculpt-guide.md) |
-| 8 | Using components | [Components Overview](docs/08-components-overview.md) |
-| 9 | Common tasks | [Recipes](docs/14-recipes.md) |
-| 10 | When things go wrong | [Troubleshooting](docs/15-troubleshooting.md) |
+- `app.js` : cycle de vie TCMPP, état global, réseau et plugin natif de profil.
+- `pages/index/` : accueil et tableau de bord.
+- `pages/employees/` : liste et recherche des bénéficiaires.
+- `pages/employee-form/` : ajout et modification d'un bénéficiaire.
+- `pages/schedule/` : détails de la programmation récurrente.
+- `pages/confirmation/` : récapitulatif et activation de démonstration.
+- `pages/calendar/` : échéances par mois et par jour.
+- `pages/history/` : historique filtrable.
+- `pages/payment-detail/` : détail d'une opération.
+- `pages/failures/` : vérification et nouvelle tentative simulée.
+- `pages/demo/` : page de démonstration des composants du socle.
+- `components/ui/` : composants d'interface réutilisables du projet.
+- `utils/event/` : EventBus pour événements et état partagé.
+- `utils/autopay/` : persistance des données fictives, calculs d'échéance et navigation partagée.
+- `utils/apis/` : client HTTP, authentification OAuth2, wrappers de plugins natifs et service backend d'exemple.
+- `utils/json-sculpt/` : transformation déclarative des données.
+- `ecrans/` : maquettes UI de référence du produit.
+- `docs/` : guides du runtime, de l'architecture et des utilitaires.
 
-## All Documentation
+Les données AutoPay de démonstration sont stockées sous la clé locale `maxit_autopay_demo_v1`. Elles sont séparées des appels réseau et peuvent être remplacées par un service backend adapté.
 
-### Guides
-- [Mini-Program Concepts](docs/01-mini-program-concepts.md) — WeChat/TCMPP runtime, file types, lifecycles
-- [Project Architecture](docs/02-project-architecture.md) — Data flow diagrams, module dependencies
-- [Getting Started](docs/03-getting-started.md) — Setup, configuration, first changes
-- [App Lifecycle](docs/04-app-lifecycle.md) — app.js: initPromise, updates, network, errors
-- [EventBus Guide](docs/05-eventbus-guide.md) — Complete state management and event API
-- [API Layer](docs/06-api-layer.md) — HTTP client, auth, native plugins, BackendAPI
-- [JSON Sculpt Guide](docs/07-json-sculpt-guide.md) — Declarative API response mapping
-- [Components Overview](docs/08-components-overview.md) — Component system and catalog
-- [Styling Guide](docs/09-styling-guide.md) — CSS variables, utility classes, rpx units
-- [WXS Filters](docs/10-wxs-filters.md) — View-thread template scripting
-- [Behaviors Guide](docs/11-behaviors-guide.md) — Shared mixin system
-- [Navigation Guide](docs/12-navigation-guide.md) — Page stack and navigation helpers
-- [Storage Guide](docs/13-storage-guide.md) — Local storage wrapper
+## Limites d'intégration
 
-### Reference
-- [Recipes](docs/14-recipes.md) — Step-by-step cookbook for common tasks
-- [Troubleshooting](docs/15-troubleshooting.md) — Common errors, debugging, FAQ
-- [Glossary](docs/16-glossary.md) — Terminology reference
-- [Contributing](CONTRIBUTING.md) — Code style and contribution guidelines
+- Le parcours UI n'appelle aucune API de transfert. Il ne prouve ni ne déclenche un paiement réel.
+- L'API backend n'est pas configurée : `utils/config.js` manque et les endpoints dans `utils/apis/index.js` sont des exemples.
+- Une intégration réelle doit s'appuyer sur les API officiellement autorisées, une exécution sécurisée côté serveur, l'idempotence, la vérification de statut et la réconciliation des paiements. Aucun secret ne doit être placé dans la mini-application.
+- Les couleurs, pictogrammes et initiales sont une interprétation provisoire des maquettes. Aucun logo officiel n'a été ajouté au projet.
 
-## Tech Stack
+## Documentation du socle
 
-| Item | Value |
-|------|-------|
-| TCMPP SDK | 2.2.4 |
-| JavaScript Target | ES2015 |
-| CSS Framework | Bootstrap-derived utilities |
-| State Management | Custom EventBus |
-| Data Transformation | JSON Sculpt |
+Consulter `docs/02-project-architecture.md` pour l'architecture, `docs/04-app-lifecycle.md` pour le démarrage, `docs/05-eventbus-guide.md` pour l'état partagé et `docs/06-api-layer.md` pour la couche réseau existante.

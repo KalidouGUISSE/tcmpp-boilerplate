@@ -1,38 +1,7 @@
-# Home Page
+# Accueil AutoPay
 
-**Route:** `pages/index/index`
+**Route :** `pages/index/index`
 
-The entry page of the application. Demonstrates core boilerplate patterns.
+Le tableau de bord présente le budget mensuel estimé à partir des bénéficiaires actifs, les prochaines échéances et les paiements nécessitant une vérification. Les actions principales ouvrent les pages Employés, Programmer, Calendrier et Historique.
 
-## What It Demonstrates
-
-1. **initPromise pattern** — `await app.globalData.initPromise` in `onLoad()`
-2. **Manual EventBus subscription** — Direct `Bus.onState()` call with cleanup in `onUnload()`
-3. **Component usage** — Nav bar, button, modal, typography, card
-4. **Navigation** — `wx.navigateTo` to the demo page
-
-## Data Flow
-
-```
-onLoad()
-  └─► await initPromise
-  └─► Bus.getState(USER_DATA) → setData({ userName })
-  └─► Bus.onState(USER_DATA, callback) → live updates
-onUnload()
-  └─► unsubscribe from EventBus
-```
-
-## Components Used
-
-Registered in `index.json`:
-- `app-nav-bar` — Custom navigation bar
-- `app-button` — Action buttons
-- `app-modal` — Dialog overlay
-- `app-typography` — Styled text
-- `app-card` — Content container
-
-## See Also
-
-- [Demo Page](../demo/README.md) — Shows the helper-based subscription pattern
-- [App Lifecycle](../../docs/04-app-lifecycle.md) — initPromise explanation
-- [EventBus Guide](../../docs/05-eventbus-guide.md) — Subscription patterns
+Les valeurs viennent du jeu de données fictives partagé dans `utils/autopay/store.js`. Le badge de démonstration rappelle qu'aucun transfert réel n'est exécuté.

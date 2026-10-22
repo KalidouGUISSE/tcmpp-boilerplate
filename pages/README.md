@@ -28,8 +28,18 @@ pages/my-page/
 
 | Page | Route | Purpose |
 |------|-------|---------|
-| [Home](index/README.md) | `pages/index/index` | Entry page. Demonstrates initPromise, manual EventBus subscription, navigation |
+| Accueil | `pages/index/index` | Tableau de bord, montants estimés, prochaines échéances |
+| Employés | `pages/employees/index` | Recherche, modification, suspension et programmation d'un bénéficiaire |
+| Formulaire employé | `pages/employee-form/index` | Ajout ou modification d'un bénéficiaire |
+| Programmer | `pages/schedule/index` | Bénéficiaire, montant, fréquence et dates |
+| Confirmation | `pages/confirmation/index` | Récapitulatif, accord et enregistrement simulé |
+| Calendrier | `pages/calendar/index` | Échéances par mois et par jour |
+| Historique | `pages/history/index` | Opérations fictives et filtres de statut |
+| Détail paiement | `pages/payment-detail/index` | Détail d'une opération fictive |
+| Paiements à vérifier | `pages/failures/index` | Vérification et nouvelle tentative simulées |
 | [Demo](demo/README.md) | `pages/demo/index` | Component showcase. Demonstrates stepper, modal, WXS, Behavior, EventBus helpers |
+
+Les neuf pages AutoPay possèdent chacune leur dossier et les fichiers `index.js`, `index.json`, `index.wxml` et `index.wxss`. Le stockage et les calculs communs sont dans `utils/autopay/`.
 
 ## Adding a New Page
 
