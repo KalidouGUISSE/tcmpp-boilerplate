@@ -35,11 +35,8 @@
 }
 
 .osn-nav-bar__back-icon {
-  font-size: 44rpx;
-  font-weight: 700;
-  color: #333;
-  line-height: 1;
-  margin-top: -4rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .osn-nav-bar__title {

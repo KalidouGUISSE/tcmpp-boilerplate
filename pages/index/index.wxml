@@ -1,17 +1,16 @@
 <view class="app-shell">
   <app-nav-bar title="Accueil" showBack="{{ false }}" />
   <scroll-view class="screen-scroll" scroll-y="true" enhanced="true" show-scrollbar="false">
-    <view class="demo-banner"><text class="demo-dot">●</text><text>MODE DÉMONSTRATION · AUCUN TRANSFERT RÉEL</text></view>
-    <view class="brand-header"><view class="brand-mark">✿</view><view class="brand-name">Max it <text>AutoPay</text></view><view class="notification" bindtap="openFailures">♧<text wx:if="{{lateCount}}" class="notification-count">{{lateCount}}</text></view></view>
+    <view class="brand-header"><view class="brand-mark">✿</view><view class="brand-name">Max it <text>AutoPay</text></view><view class="notification" bindtap="openFailures"><image class="header-icon" src="/icons/Tableau-de-bord/bell.svg" mode="aspectFit" /><text wx:if="{{lateCount}}" class="notification-count">{{lateCount}}</text></view></view>
     <view class="welcome"><text class="title">Bonjour, {{userName}} 👋</text><text class="muted">Votre équipe travaille, vous avancez.</text></view>
-    <view class="balance-card"><view class="balance-kicker">Budget récurrent mensuel estimé</view><view class="balance-amount">{{monthTotal}} <text>FCFA</text></view><view class="balance-foot"><text class="people-icon">♟</text>{{activeCount}} bénéficiaires actifs</view></view>
-    <view wx:if="{{nextPayment}}" class="next-card" data-id="{{nextPayment.id}}" bindtap="openPayment"><view><text class="card-label">Prochaine échéance</text><text class="next-date">{{nextPayment.dateLabel}}</text><text class="muted small">{{nextPayment.name}} · {{nextPayment.amountLabel}} FCFA</text></view><view class="calendar-icon">▦</view></view>
+    <view class="balance-card"><view class="balance-kicker">Budget récurrent mensuel estimé</view><view class="balance-amount">{{monthTotal}} <text>FCFA</text></view><view class="balance-foot"><image class="people-icon" src="/icons/Navigation/users.svg" mode="aspectFit" />{{activeCount}} bénéficiaires actifs</view></view>
+    <view wx:if="{{nextPayment}}" class="next-card" data-id="{{nextPayment.id}}" bindtap="openPayment"><view><text class="card-label">Prochaine échéance</text><text class="next-date">{{nextPayment.dateLabel}}</text><text class="muted small">{{nextPayment.name}} · {{nextPayment.amountLabel}} FCFA</text></view><image class="calendar-icon" src="/icons/Paiements/calendar-clock.svg" mode="aspectFit" /></view>
     <view class="stats-row"><view class="stat-card"><text class="stat-number">{{activeCount}}</text><text class="stat-label">Employés</text></view><view class="stat-card"><text class="stat-number">{{upcomingCount}}</text><text class="stat-label">À venir</text></view><view class="stat-card alert-stat" bindtap="openFailures"><text class="stat-number">{{lateCount}}</text><text class="stat-label">À vérifier</text></view></view>
-    <button class="primary-button main-cta" bindtap="openSchedule">＋ Programmer un paiement</button>
+    <button class="primary-button main-cta" bindtap="openSchedule"><image class="button-icon" src="/icons/Actions/plus.svg" mode="aspectFit" /> Programmer un paiement</button>
     <view class="section-heading"><text>Paiements à venir</text></view>
-    <view wx:if="{{payments.length === 0}}" class="empty-card"><text class="empty-icon">▦</text><text class="empty-title">Aucun paiement programmé</text><text class="muted">Commencez par créer votre première échéance.</text><button class="outline-button" bindtap="openSchedule">Ajouter mon premier paiement</button></view>
+    <view wx:if="{{payments.length === 0}}" class="empty-card"><image class="empty-icon" src="/icons/Navigation/calendar-days.svg" mode="aspectFit" /><text class="empty-title">Aucun paiement programmé</text><text class="muted">Commencez par créer votre première échéance.</text><button class="outline-button" bindtap="openSchedule">Ajouter mon premier paiement</button></view>
     <view class="payment-row" wx:for="{{payments}}" wx:key="id" data-id="{{item.id}}" bindtap="openPayment"><view class="avatar">{{item.avatarText}}</view><view class="row-main"><text class="row-title">{{item.name}}</text><text class="row-sub">{{item.amountLabel}} FCFA · {{item.dateLabel}}</text></view><text class="badge badge-green">{{item.statusLabel}}</text></view>
-    <view class="quick-link" bindtap="openEmployees"><text class="quick-icon">♙</text><text>Gérer mes employés</text><text class="chevron">›</text></view>
+    <view class="quick-link" bindtap="openEmployees"><image class="quick-icon" src="/icons/Navigation/users.svg" mode="aspectFit" /><text>Gérer mes employés</text><image class="chevron-icon" src="/icons/Navigation/chevron-right.svg" mode="aspectFit" /></view>
   </scroll-view>
   <autopay-tabs active="home" />
 </view>

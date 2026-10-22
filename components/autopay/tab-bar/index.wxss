@@ -22,5 +22,12 @@
   gap: 2rpx;
 }
 
-.nav-icon { font-size: 39rpx; line-height: 1.1; }
+.nav-icon {
+  width: 40rpx;
+  height: 40rpx;
+  filter: brightness(0) saturate(100%) invert(62%) sepia(8%) saturate(559%) hue-rotate(158deg) brightness(92%) contrast(87%);
+}
 .nav-active { color: #f47700; font-weight: 700; }
+.nav-active .nav-icon {
+  filter: brightness(0) saturate(100%) invert(45%) sepia(90%) saturate(1618%) hue-rotate(1deg) brightness(101%) contrast(105%);
+}

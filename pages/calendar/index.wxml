@@ -1,8 +1,7 @@
 <view class="app-shell">
   <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
-    <view class="demo-banner">MODE DÉMONSTRATION · AUCUN TRANSFERT RÉEL</view>
     <view class="page-header"><text class="page-title">Calendrier des paiements</text></view>
-    <view class="month-toolbar"><text class="month-arrow" data-delta="-1" bindtap="changeMonth">‹</text><text class="month-name">{{monthLabel}}</text><text class="month-arrow" data-delta="1" bindtap="changeMonth">›</text></view>
+    <view class="month-toolbar"><view class="month-arrow" data-delta="-1" bindtap="changeMonth"><image class="month-icon" src="/icons/Navigation/arrow-left.svg" mode="aspectFit" /></view><text class="month-name">{{monthLabel}}</text><view class="month-arrow" data-delta="1" bindtap="changeMonth"><image class="month-icon" src="/icons/Navigation/chevron-right.svg" mode="aspectFit" /></view></view>
     <view class="calendar-grid"><text class="weekday" wx:for="{{weekdays}}" wx:key="*this">{{item}}</text><view class="calendar-day {{!item.inMonth ? 'outside' : ''}} {{item.selected ? 'day-selected' : ''}} {{item.today ? 'day-today' : ''}}" wx:for="{{calendarCells}}" wx:key="key" data-date="{{item.date}}" bindtap="selectDay"><text>{{item.day}}</text><view wx:if="{{item.hasPayment}}" class="day-dot"></view></view></view>
     <view class="section-heading"><text>Échéances du {{selectedDay}}</text><text class="muted">{{selectedPayments.length}} paiement(s)</text></view>
     <view wx:if="{{selectedPayments.length === 0}}" class="empty-card compact-empty"><text class="muted">Aucun paiement prévu à cette date.</text></view>
