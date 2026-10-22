@@ -11,7 +11,7 @@
 }
 
 .nav-item {
-  width: 25%;
+  width: 20%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -20,6 +20,33 @@
   color: #829099;
   font-size: 19rpx;
   gap: 2rpx;
+}
+
+.nav-create-item {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-create-button {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #f47700;
+  box-shadow: 0 5rpx 12rpx rgba(244, 119, 0, .22);
+}
+
+.nav-create-icon {
+  width: 38rpx;
+  height: 38rpx;
+  display: block;
+  filter: brightness(0) invert(1);
 }
 
 .nav-icon {

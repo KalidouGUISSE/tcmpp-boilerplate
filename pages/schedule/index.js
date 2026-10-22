@@ -4,7 +4,7 @@ import { navigateBack } from '../../utils/autopay/navigation.js';
 const todayString = () => { const date = new Date(); return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`; };
 
 Page({
-  data: { activeEmployees: [], employeeIndex: 0, selectedEmployee: null, frequencyOptions: ['Hebdomadaire', 'Mensuelle'], draft: {}, nextDueLabel: '' },
+  data: { activeEmployees: [], employeeIndex: 0, selectedEmployee: null, frequencyOptions: ['Journalier', 'Hebdomadaire', 'Mensuelle'], draft: {}, nextDueLabel: '' },
   onLoad(options) {
     this.initialEmployeeId = options.employeeId || '';
     const employee = loadData().employees.find((item) => item.id === this.initialEmployeeId && item.active) || loadData().employees.find((item) => item.active);

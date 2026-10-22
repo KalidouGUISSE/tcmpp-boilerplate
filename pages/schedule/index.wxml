@@ -82,6 +82,13 @@
         </text>
         <view class="frequency-row">
           <view
+            class="frequency-pill {{draft.frequency === 'Journalier' ? 'chosen' : ''}}"
+            data-frequency="Journalier"
+            bindtap="chooseFrequency"
+          >
+            Journalier
+          </view>
+          <view
             class="frequency-pill {{draft.frequency === 'Hebdomadaire' ? 'chosen' : ''}}"
             data-frequency="Hebdomadaire"
             bindtap="chooseFrequency"

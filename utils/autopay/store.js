@@ -14,6 +14,7 @@ export const formatAmount = (amount) => Number(amount || 0).toLocaleString('fr-F
 
 export const nextDueDate = (employee, fromDate = new Date(), frequency) => {
   const cadence = frequency || employee.frequency;
+  if (cadence === 'Journalier') return new Date(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate() + 1);
   if (cadence === 'Hebdomadaire') return new Date(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate() + 7);
   const day = employee.day || 15;
   const result = new Date(fromDate.getFullYear(), fromDate.getMonth(), day);

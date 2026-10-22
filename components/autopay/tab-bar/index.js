@@ -4,5 +4,6 @@ Component({
   properties: { active: { type: String, value: 'home' } },
   methods: {
     openTab(event) { navigateTab(event.currentTarget.dataset.tab); },
+    createPayment() { wx.navigateTo({ url: '/pages/schedule/index' }); },
   },
 });
