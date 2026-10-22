@@ -1,6 +1,11 @@
 const DATA_KEY = 'maxit_autopay_demo_v1';
 const DRAFT_KEY = 'maxit_autopay_draft_v1';
 const MONTHS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+const PROFILE_IMAGES = {
+  e1: '/assets/profils/Portrait%20professionnel%20d%E2%80%99une%20femme%20tress%C3%A9e.png',
+  e2: '/assets/profils/Portrait%20s%C3%A9n%C3%A9galais%20en%20tenue%20traditionnelle.png',
+  e3: '/assets/profils/Portrait%20professionnel%20d%E2%80%99un%20homme%20barbu%20en%20cercle.png',
+};
 
 export const initials = (name) => (name || '?').split(' ').map((part) => part[0]).slice(0, 2).join('').toUpperCase();
 export const isoDay = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -21,7 +26,7 @@ export const makeDemoData = () => {
     { id: 'e1', name: 'Aminata Diallo', phone: '+221 77 123 45 67', amount: 100000, frequency: 'Mensuelle', day: 15, active: true },
     { id: 'e2', name: 'Moussa Sow', phone: '+221 76 987 65 43', amount: 75000, frequency: 'Mensuelle', day: 20, active: true },
     { id: 'e3', name: 'Ismaël Diop', phone: '+221 70 456 76 90', amount: 60000, frequency: 'Mensuelle', day: 25, active: true },
-  ].map((item) => ({ ...item, avatarText: initials(item.name) }));
+  ].map((item) => ({ ...item, avatarText: initials(item.name), avatarImage: PROFILE_IMAGES[item.id] }));
   const now = new Date();
   const payments = employees.map((employee, index) => {
     const due = nextDueDate(employee);
@@ -40,9 +45,22 @@ export const makeDemoData = () => {
 export const loadData = () => {
   const stored = wx.getStorageSync(DATA_KEY);
   const data = stored && Array.isArray(stored.employees) ? stored : makeDemoData();
-  data.payments = (data.payments || []).map((item) => ({ ...item, avatarText: item.avatarText || initials(item.name) }));
-  data.history = (data.history || []).map((item) => ({ ...item, avatarText: item.avatarText || initials(item.name) }));
-  data.employees = data.employees.map((item) => ({ ...item, avatarText: item.avatarText || initials(item.name) }));
+  data.employees = data.employees.map((item) => ({
+    ...item,
+    avatarText: item.avatarText || initials(item.name),
+    avatarImage: item.avatarImage || PROFILE_IMAGES[item.id] || '',
+  }));
+  const employeeById = Object.fromEntries(data.employees.map((item) => [item.id, item]));
+  data.payments = (data.payments || []).map((item) => ({
+    ...item,
+    avatarText: item.avatarText || initials(item.name),
+    avatarImage: item.avatarImage || (employeeById[item.employeeId] && employeeById[item.employeeId].avatarImage) || '',
+  }));
+  data.history = (data.history || []).map((item) => ({
+    ...item,
+    avatarText: item.avatarText || initials(item.name),
+    avatarImage: item.avatarImage || (employeeById[item.employeeId] && employeeById[item.employeeId].avatarImage) || '',
+  }));
   return data;
 };
 export const saveData = (data) => wx.setStorageSync(DATA_KEY, data);
@@ -62,7 +80,7 @@ export const createScheduledPayment = (data, draft) => {
   if (!employee || !employee.active || !draft.amount || !draft.startDate || Number.isNaN(due.getTime())) throw new Error('Informations de programmation incomplètes.');
   const nextDue = nextDueDate(employee, due, draft.frequency);
   const stamp = Date.now();
-  const payment = { id: `demo-${stamp}`, employeeId: employee.id, name: employee.name, avatarText: employee.avatarText, phone: employee.phone, amount: Number(draft.amount), date: isoDay(nextDue), dateLabel: dateLabel(nextDue), status: 'scheduled', statusLabel: 'Programmé · démo', ref: `DEMO-${String(stamp).slice(-6)}`, fee: null, mode: 'Mode démonstration — aucun transfert exécuté' };
+  const payment = { id: `demo-${stamp}`, employeeId: employee.id, name: employee.name, avatarText: employee.avatarText, avatarImage: employee.avatarImage, phone: employee.phone, amount: Number(draft.amount), date: isoDay(nextDue), dateLabel: dateLabel(nextDue), status: 'scheduled', statusLabel: 'Programmé · démo', ref: `DEMO-${String(stamp).slice(-6)}`, fee: null, mode: 'Mode démonstration — aucun transfert exécuté' };
   data.payments.unshift(payment);
   saveData(data);
   clearDraft();

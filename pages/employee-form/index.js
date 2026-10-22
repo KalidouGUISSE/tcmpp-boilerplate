@@ -5,7 +5,7 @@ Page({
   data: { id: '', editing: false, frequencyOptions: ['Hebdomadaire', 'Mensuelle'], form: { name: '', phone: '', amount: '', frequency: 'Mensuelle', email: '' } },
   onLoad(options) {
     const person = options.id ? loadData().employees.find((item) => item.id === options.id) : null;
-    if (person) this.setData({ id: person.id, editing: true, form: { name: person.name, phone: person.phone, amount: String(person.amount), frequency: person.frequency, email: person.email || '' } });
+    if (person) this.setData({ id: person.id, editing: true, form: { name: person.name, phone: person.phone, amount: String(person.amount), frequency: person.frequency, email: person.email || '', avatarImage: person.avatarImage || '' } });
   },
   input(event) { const field = event.currentTarget.dataset.field; this.setData({ [`form.${field}`]: event.detail.value }); },
   chooseFrequency(event) { this.setData({ 'form.frequency': this.data.frequencyOptions[Number(event.detail.value)] || 'Mensuelle' }); },
