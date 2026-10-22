@@ -8,7 +8,7 @@ Mini-application TCMPP en JavaScript, WXML et WXSS pour organiser des paiements 
 
 1. Ouvrir le dossier du projet dans TCMPP Developer Tools.
 2. Compiler et prévisualiser sur simulateur ou appareil.
-3. Utiliser les quatre entrées de navigation en bas de l'écran : Accueil, Employés, Calendrier et Historique.
+3. Utiliser les quatre entrées de navigation en bas de l'écran : Accueil, Bénéficiaires, Calendrier et Historique.
 
 Les données de démonstration sont conservées localement. Utiliser le stockage de la mini-application pour réinitialiser les données après une présentation.
 

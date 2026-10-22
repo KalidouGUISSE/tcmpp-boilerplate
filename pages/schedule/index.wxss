@@ -1,1 +1,2 @@
 ﻿@import "../../utils/autopay/common.wxss";
+.schedule-back-button { width: 56rpx; }

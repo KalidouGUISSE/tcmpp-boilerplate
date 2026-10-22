@@ -1,4 +1,5 @@
 <view class="app-shell">
+  <app-nav-bar safeAreaOnly="{{ true }}" />
   <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
     <view class="page-header"><view class="back-button" bindtap="back"><image class="back-icon" src="/icons/Navigation/arrow-left.svg" mode="aspectFit" /></view><text class="page-title">{{confirmed ? 'Confirmation' : 'Vérifier la programmation'}}</text></view>
     <view wx:if="{{!confirmed}}">

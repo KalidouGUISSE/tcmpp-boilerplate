@@ -1,4 +1,5 @@
 <view class="app-shell">
+  <app-nav-bar safeAreaOnly="{{ true }}" />
   <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
     <view class="page-header"><text class="page-title">Calendrier des paiements</text></view>
     <view class="month-toolbar"><view class="month-arrow" data-delta="-1" bindtap="changeMonth"><image class="month-icon" src="/icons/Navigation/arrow-left.svg" mode="aspectFit" /></view><text class="month-name">{{monthLabel}}</text><view class="month-arrow" data-delta="1" bindtap="changeMonth"><image class="month-icon" src="/icons/Navigation/chevron-right.svg" mode="aspectFit" /></view></view>

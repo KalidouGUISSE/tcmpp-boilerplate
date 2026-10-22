@@ -1,6 +1,7 @@
 <view class="app-shell">
+  <app-nav-bar safeAreaOnly="{{ true }}" />
   <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
-    <view class="page-header"><view class="back-button" bindtap="back"><image class="back-icon" src="/icons/Navigation/arrow-left.svg" mode="aspectFit" /></view><text class="page-title">{{editing ? 'Modifier un employé' : 'Ajouter un employé'}}</text></view>
+    <view class="page-header"><view class="back-button" bindtap="back"><image class="back-icon" src="/icons/Navigation/arrow-left.svg" mode="aspectFit" /></view><text class="page-title">{{editing ? 'Modifier un bénéficiaire' : 'Ajouter un bénéficiaire'}}</text></view>
     <view class="form-content"><view class="photo-placeholder"><image wx:if="{{form.avatarImage}}" class="profile-preview" src="{{form.avatarImage}}" mode="aspectFill" /><image wx:else class="form-icon" src="/icons/Employes/user-round.svg" mode="aspectFit" /></view><text class="photo-caption">Photo facultative</text>
       <view class="field"><text class="field-label">Nom complet <text class="required">*</text></text><input class="text-input" placeholder="Ex. : Aminata Diallo" value="{{form.name}}" data-field="name" bindinput="input" /></view>
       <view class="field"><view class="field-label"><image class="label-icon" src="/icons/Employes/phone.svg" mode="aspectFit" /><text>Numéro de téléphone</text><text class="required">*</text></view><input class="text-input" type="text" placeholder="+221 77 123 45 67" value="{{form.phone}}" data-field="phone" bindinput="input" /></view>

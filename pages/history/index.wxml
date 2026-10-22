@@ -1,4 +1,5 @@
 <view class="app-shell">
+  <app-nav-bar safeAreaOnly="{{ true }}" />
   <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
     <view class="page-header"><text class="page-title">Historique et suivi</text><text class="link" bindtap="openFailures">À vérifier ({{failedCount}})</text></view>
     <view class="filter-row"><text class="filter-pill {{filter === 'all' ? 'filter-active' : ''}}" data-filter="all" bindtap="setFilter">Tous</text><text class="filter-pill {{filter === 'success' ? 'filter-active' : ''}}" data-filter="success" bindtap="setFilter">Réussis</text><text class="filter-pill {{filter === 'pending' ? 'filter-active' : ''}}" data-filter="pending" bindtap="setFilter">En attente</text><text class="filter-pill {{filter === 'failed' ? 'filter-active' : ''}}" data-filter="failed" bindtap="setFilter">Échoués</text></view>

@@ -1,5 +1,5 @@
 <view class="osn-nav-bar {{ transparent ? 'osn-nav-bar--transparent' : '' }}" style="padding-top: {{ statusBarHeight }}px;">
-  <view class="osn-nav-bar__content" style="height: {{ navHeight }}px;">
+  <view wx:if="{{ !safeAreaOnly }}" class="osn-nav-bar__content" style="height: {{ navHeight }}px;">
     <view wx:if="{{ showBack }}" class="osn-nav-bar__back" bind:tap="goBack">
       <image class="osn-nav-bar__back-icon" src="/icons/Navigation/arrow-left.svg" mode="aspectFit" />
     </view>

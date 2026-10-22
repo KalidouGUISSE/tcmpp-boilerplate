@@ -1,6 +1,6 @@
 <view class="bottom-nav">
   <view class="nav-item {{active === 'home' ? 'nav-active' : ''}}" data-tab="home" bindtap="openTab"><image class="nav-icon" src="/icons/Navigation/house.svg" mode="aspectFit" /><text>Accueil</text></view>
-  <view class="nav-item {{active === 'employees' ? 'nav-active' : ''}}" data-tab="employees" bindtap="openTab"><image class="nav-icon" src="/icons/Navigation/users.svg" mode="aspectFit" /><text>Employés</text></view>
+  <view class="nav-item {{active === 'employees' ? 'nav-active' : ''}}" data-tab="employees" bindtap="openTab"><image class="nav-icon" src="/icons/Navigation/users.svg" mode="aspectFit" /><text>Bénéficiaires</text></view>
   <view class="nav-item {{active === 'calendar' ? 'nav-active' : ''}}" data-tab="calendar" bindtap="openTab"><image class="nav-icon" src="/icons/Navigation/calendar-days.svg" mode="aspectFit" /><text>Calendrier</text></view>
   <view class="nav-item {{active === 'history' ? 'nav-active' : ''}}" data-tab="history" bindtap="openTab"><image class="nav-icon" src="/icons/Navigation/history.svg" mode="aspectFit" /><text>Historique</text></view>
 </view>

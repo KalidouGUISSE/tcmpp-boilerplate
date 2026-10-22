@@ -1,1 +1,36 @@
 ﻿@import "../../utils/autopay/common.wxss";
+.payment-detail-content { padding: 0 0 18rpx; }
+.detail-status { margin: 20rpx 28rpx 14rpx; min-height: 84rpx; padding: 14rpx 24rpx; display: flex; align-items: center; justify-content: center; gap: 12rpx; border-radius: 44rpx; color: #fff; font-size: 25rpx; font-weight: 750; box-sizing: border-box; }
+.detail-status-icon { width: 38rpx; height: 38rpx; flex: none; filter: brightness(0) invert(1); }
+.detail-status.status-success { background: #087d57; }
+.detail-status.status-failed { background: #cc4848; }
+.detail-status.status-pending { background: #d98200; }
+.detail-person { margin: 0 28rpx; padding: 17rpx 3rpx 24rpx; }
+.detail-person-info { display: flex; flex-direction: column; gap: 4rpx; }
+.detail-card { margin: 0 28rpx; padding: 8rpx 20rpx; background: #fff; border-radius: 20rpx; }
+.detail-card .summary-line { min-height: 72rpx; align-items: center; box-sizing: border-box; }
+.detail-card .summary-line:last-child { border-bottom: 0; }
+.detail-status-label { flex: none; padding: 7rpx 14rpx; border-radius: 24rpx; font-size: 20rpx; font-weight: 700; }
+.detail-status-label.status-success { color: #148052; background: #dcf7e9; }
+.detail-status-label.status-failed { color: #c73d3d; background: #ffebeb; }
+.detail-status-label.status-pending { color: #a85800; background: #fff0d6; }
+.detail-disclaimer { display: block; margin: 16rpx 28rpx 4rpx; color: #829099; text-align: center; font-size: 19rpx; }
+.detail-actions { flex-shrink: 0; padding: 12rpx 20rpx calc(20rpx + env(safe-area-inset-bottom)); background: #fff; border-top: 1rpx solid #edf0f2; }
+.receipt-button, .detail-back-button { width: 100%; margin: 0; display: flex; align-items: center; justify-content: center; gap: 10rpx; box-sizing: border-box; }
+.receipt-button, .detail-back-button { border-radius: 44rpx; font-size: 25rpx; }
+.receipt-button { height: 88rpx; line-height: 88rpx; margin-bottom: 12rpx; }
+.detail-back-button { height: 80rpx; line-height: 80rpx; }
+.receipt-icon { width: 32rpx; height: 32rpx; }
+
+#receipt-button{
+  /* background-color: #f47700;
+  color: #fff;
+  border: none;
+  border-radius: 22rpx;
+  height: 92rpx;
+  line-height: 92rpx;
+  font-size: 29rpx;
+  font-weight: 700;
+  box-shadow: 0 7rpx 15rpx rgba(244, 119, 0, .14); */
+  width: 100%;
+}

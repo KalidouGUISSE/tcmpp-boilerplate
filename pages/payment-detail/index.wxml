@@ -1,12 +1,103 @@
 <view class="app-shell">
+  <app-nav-bar safeAreaOnly="{{ true }}" />
+
   <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
-    <view class="page-header"><view class="back-button" bindtap="back"><image class="back-icon" src="/icons/Navigation/arrow-left.svg" mode="aspectFit" /></view><text class="page-title">Détail du paiement</text></view>
-    <view wx:if="{{payment}}">
-      <view class="detail-status {{payment.statusClass}}"><image wx:if="{{payment.status === 'success'}}" class="detail-status-icon" src="/icons/Statuts/circle-check.svg" mode="aspectFit" /><image wx:elif="{{payment.status === 'failed'}}" class="detail-status-icon" src="/icons/Statuts/circle-x.svg" mode="aspectFit" /><image wx:elif="{{payment.status === 'pending'}}" class="detail-status-icon" src="/icons/Statuts/clock.svg" mode="aspectFit" /><image wx:else class="detail-status-icon" src="/icons/Paiements/calendar-clock.svg" mode="aspectFit" />{{payment.statusLabel}}</view>
-      <view class="summary-person detail-person"><view class="avatar large"><image wx:if="{{payment.avatarImage}}" class="avatar-image" src="{{payment.avatarImage}}" mode="aspectFill" /><text wx:else>{{payment.avatarText}}</text></view><view><text class="row-title">{{payment.name}}</text><text class="row-sub">{{payment.phone}}</text></view></view>
-      <view class="detail-card"><view class="summary-line"><text>Montant</text><text>{{payment.amountLabel}} FCFA</text></view><view class="summary-line"><text>Frais</text><text>{{payment.fee === 0 ? '0 FCFA' : 'À confirmer'}}</text></view><view class="summary-line"><text>Date</text><text>{{payment.dateLabel}}</text></view><view class="summary-line"><text>Référence de démonstration</text><text>{{payment.ref}}</text></view><view class="summary-line"><text>Origine</text><text>{{payment.mode}}</text></view><view wx:if="{{payment.reason}}" class="summary-line"><text>Motif</text><text>{{payment.reason}}</text></view></view>
-      <view class="mode-note">Cette fiche décrit une donnée de démonstration. Elle ne constitue ni un reçu ni une preuve de transfert.</view>
+    <view class="page-header">
+      <view class="back-button" bindtap="back">
+        <image
+          class="back-icon"
+          src="/icons/Navigation/arrow-left.svg"
+          mode="aspectFit"
+        />
+      </view>
+      <text class="page-title">Détail du paiement</text>
+    </view>
+
+    <view wx:if="{{payment}}" class="payment-detail-content">
+      <view class="detail-status {{payment.statusClass}}">
+        <image
+          wx:if="{{payment.status === 'success'}}"
+          class="detail-status-icon"
+          src="/icons/Statuts/circle-check.svg"
+          mode="aspectFit"
+        />
+        <image
+          wx:elif="{{payment.status === 'failed'}}"
+          class="detail-status-icon"
+          src="/icons/Statuts/circle-x.svg"
+          mode="aspectFit"
+        />
+        <image
+          wx:elif="{{payment.status === 'pending'}}"
+          class="detail-status-icon"
+          src="/icons/Statuts/clock.svg"
+          mode="aspectFit"
+        />
+        <image
+          wx:else
+          class="detail-status-icon"
+          src="/icons/Paiements/calendar-clock.svg"
+          mode="aspectFit"
+        />
+        {{payment.statusLabel}}
+      </view>
+
+      <view class="summary-person detail-person">
+        <view class="avatar large">
+          <image
+            wx:if="{{payment.avatarImage}}"
+            class="avatar-image"
+            src="{{payment.avatarImage}}"
+            mode="aspectFill"
+          />
+          <text wx:else>{{payment.avatarText}}</text>
+        </view>
+        <view class="detail-person-info">
+          <text class="row-title">{{payment.name}}</text>
+          <text class="row-sub">{{payment.phone}}</text>
+        </view>
+      </view>
+
+      <view class="detail-card">
+        <view class="summary-line">
+          <text>Montant</text>
+          <text>{{payment.amountLabel}} FCFA</text>
+        </view>
+        <view class="summary-line">
+          <text>Frais de transaction</text>
+          <text>{{payment.feeLabel}}</text>
+        </view>
+        <view class="summary-line">
+          <text>Date d’exécution</text>
+          <text>{{payment.dateLabel}}</text>
+        </view>
+        <view class="summary-line">
+          <text>Référence de transaction</text>
+          <text>{{payment.ref}}</text>
+        </view>
+        <view class="summary-line">
+          <text>Statut</text>
+          <text class="detail-status-label {{payment.statusClass}}">
+            {{payment.statusLabel}}
+          </text>
+        </view>
+      </view>
+
+      <text class="detail-disclaimer">Mode démonstration · Aucun transfert réel effectué</text>
     </view>
   </scroll-view>
-  <button class="primary-button bottom-action" bindtap="back">Retour</button>
+
+  <view class="detail-actions">
+    <button id="receipt-button" class="outline-button receipt-button" bindtap="downloadReceipt">
+      <image
+        class="receipt-icon"
+        src="/icons/Actions/download.svg"
+        mode="aspectFit"
+      />
+      Télécharger le reçu
+    </button>
+    <button id="receipt-button" class="primary-button detail-back-button" bindtap="back">
+      Retour
+    </button>
+  </view>
 </view>

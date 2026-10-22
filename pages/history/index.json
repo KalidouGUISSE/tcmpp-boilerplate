@@ -1,1 +1,1 @@
-{ "usingComponents": { "autopay-tabs": "/components/autopay/tab-bar/index" } }
+{ "usingComponents": { "app-nav-bar": "/components/ui/nav-bar/index", "autopay-tabs": "/components/autopay/tab-bar/index" } }

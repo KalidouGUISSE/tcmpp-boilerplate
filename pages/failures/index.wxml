@@ -1,4 +1,5 @@
 <view class="app-shell">
+  <app-nav-bar safeAreaOnly="{{ true }}" />
   <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
     <view class="page-header"><view class="back-button" bindtap="back"><image class="back-icon" src="/icons/Navigation/arrow-left.svg" mode="aspectFit" /></view><text class="page-title">Paiements à vérifier</text></view>
     <view class="warning-card"><image class="warning-icon" src="/icons/Statuts/triangle-alert.svg" mode="aspectFit" /><view><text class="row-title">Vérifiez avant toute nouvelle tentative</text><text class="row-sub">En cas de statut incertain, ne relancez pas le paiement.</text></view></view>

@@ -1,15 +1,153 @@
 <view class="app-shell">
+  <app-nav-bar safeAreaOnly="{{ true }}" />
+
   <scroll-view class="screen-scroll" scroll-y="true" show-scrollbar="false">
-    <view class="page-header"><view class="back-button" bindtap="back"><image class="back-icon" src="/icons/Navigation/arrow-left.svg" mode="aspectFit" /></view><text class="page-title">Programmer un paiement</text></view>
-    <view class="stepper"><view class="step active"><text>1</text><label>Détails</label></view><view class="step-line"></view><view class="step"><text>2</text><label>Récapitulatif</label></view><view class="step-line"></view><view class="step"><text>3</text><label>Confirmation</label></view></view>
+    <view class="page-header">
+      <view class="back-button schedule-back-button" bindtap="back">
+        <image
+          class="back-icon"
+          src="/icons/Navigation/arrow-left.svg"
+          mode="aspectFit"
+        />
+      </view>
+      <text class="page-title">Programmer un paiement</text>
+    </view>
+
+    <view class="stepper">
+      <view class="step active">
+        <text>1</text>
+        <label>Détails</label>
+      </view>
+      <view class="step-line"></view>
+      <view class="step">
+        <text>2</text>
+        <label>Récapitulatif</label>
+      </view>
+      <view class="step-line"></view>
+      <view class="step">
+        <text>3</text>
+        <label>Confirmation</label>
+      </view>
+    </view>
+
     <view class="form-content">
-      <view class="field"><text class="field-label">Bénéficiaire <text class="required">*</text></text><picker mode="selector" range="{{activeEmployees}}" range-key="name" value="{{employeeIndex}}" bindchange="selectEmployee"><view class="select-input">{{selectedEmployee ? selectedEmployee.name : 'Choisir un bénéficiaire'}}<text>⌄</text></view></picker><text wx:if="{{selectedEmployee}}" class="row-sub">{{selectedEmployee.phone}}</text><text class="link add-inline" bindtap="addEmployee"><image class="inline-icon" src="/icons/Actions/plus.svg" mode="aspectFit" /> Ajouter un bénéficiaire</text></view>
-      <view class="field"><text class="field-label">Montant <text class="required">*</text></text><view class="amount-input"><input type="digit" placeholder="Ex. : 100 000" value="{{draft.amount}}" data-field="amount" bindinput="input"/><text>FCFA</text></view></view>
-      <view class="field"><text class="field-label">Fréquence <text class="required">*</text></text><view class="frequency-row"><view class="frequency-pill {{draft.frequency === 'Hebdomadaire' ? 'chosen' : ''}}" data-frequency="Hebdomadaire" bindtap="chooseFrequency">Hebdomadaire</view><view class="frequency-pill {{draft.frequency === 'Mensuelle' ? 'chosen' : ''}}" data-frequency="Mensuelle" bindtap="chooseFrequency">Mensuelle</view></view></view>
-      <view class="field"><text class="field-label">Date de début <text class="required">*</text></text><picker mode="date" value="{{draft.startDate}}" data-field="startDate" bindchange="input"><view class="select-input"><image class="inline-icon" src="/icons/Navigation/calendar-days.svg" mode="aspectFit" /> {{draft.startDate}}<text>⌄</text></view></picker></view>
-      <view class="field"><text class="field-label">Date de fin <text class="muted">(facultative)</text></text><picker mode="date" value="{{draft.endDate}}" data-field="endDate" bindchange="input"><view class="select-input"><image class="inline-icon" src="/icons/Navigation/calendar-days.svg" mode="aspectFit" /> {{draft.endDate || 'Sélectionner une date'}}<text>⌄</text></view></picker></view>
-      <view class="next-due-note">Prochaine échéance estimée : <text>{{nextDueLabel || 'Sélectionnez un bénéficiaire'}}</text></view>
+      <view class="field">
+        <text class="field-label">
+          Bénéficiaire <text class="required">*</text>
+        </text>
+        <picker
+          mode="selector"
+          range="{{activeEmployees}}"
+          range-key="name"
+          value="{{employeeIndex}}"
+          bindchange="selectEmployee"
+        >
+          <view class="select-input">
+            {{selectedEmployee ? selectedEmployee.name : 'Choisir un bénéficiaire'}}
+            <text>⌄</text>
+          </view>
+        </picker>
+        <text wx:if="{{selectedEmployee}}" class="row-sub">
+          {{selectedEmployee.phone}}
+        </text>
+        <text class="link add-inline" bindtap="addEmployee">
+          <image
+            class="inline-icon"
+            src="/icons/Actions/plus.svg"
+            mode="aspectFit"
+          />
+          Ajouter un bénéficiaire
+        </text>
+      </view>
+
+      <view class="field">
+        <text class="field-label">
+          Montant <text class="required">*</text>
+        </text>
+        <view class="amount-input">
+          <input
+            type="digit"
+            placeholder="Ex. : 100 000"
+            value="{{draft.amount}}"
+            data-field="amount"
+            bindinput="input"
+          />
+          <text>FCFA</text>
+        </view>
+      </view>
+
+      <view class="field">
+        <text class="field-label">
+          Fréquence <text class="required">*</text>
+        </text>
+        <view class="frequency-row">
+          <view
+            class="frequency-pill {{draft.frequency === 'Hebdomadaire' ? 'chosen' : ''}}"
+            data-frequency="Hebdomadaire"
+            bindtap="chooseFrequency"
+          >
+            Hebdomadaire
+          </view>
+          <view
+            class="frequency-pill {{draft.frequency === 'Mensuelle' ? 'chosen' : ''}}"
+            data-frequency="Mensuelle"
+            bindtap="chooseFrequency"
+          >
+            Mensuelle
+          </view>
+        </view>
+      </view>
+
+      <view class="field">
+        <text class="field-label">
+          Date de début <text class="required">*</text>
+        </text>
+        <picker
+          mode="date"
+          value="{{draft.startDate}}"
+          data-field="startDate"
+          bindchange="input"
+        >
+          <view class="select-input">
+            <image
+              class="inline-icon"
+              src="/icons/Navigation/calendar-days.svg"
+              mode="aspectFit"
+            />
+            {{draft.startDate}}
+            <text>⌄</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="field">
+        <text class="field-label">
+          Date de fin <text class="muted">(facultative)</text>
+        </text>
+        <picker
+          mode="date"
+          value="{{draft.endDate}}"
+          data-field="endDate"
+          bindchange="input"
+        >
+          <view class="select-input">
+            <image
+              class="inline-icon"
+              src="/icons/Navigation/calendar-days.svg"
+              mode="aspectFit"
+            />
+            {{draft.endDate || 'Sélectionner une date'}}
+            <text>⌄</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="next-due-note">
+        Prochaine échéance estimée :
+        <text>{{nextDueLabel || 'Sélectionnez un bénéficiaire'}}</text>
+      </view>
     </view>
   </scroll-view>
+
   <button class="primary-button bottom-action" bindtap="continue">Vérifier les informations</button>
 </view>

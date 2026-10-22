@@ -15,6 +15,7 @@ Component({
     title: { type: String, value: '' },
     showBack: { type: Boolean, value: true },
     transparent: { type: Boolean, value: false },
+    safeAreaOnly: { type: Boolean, value: false },
   },
 
   data: {
