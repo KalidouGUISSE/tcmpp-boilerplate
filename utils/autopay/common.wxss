@@ -1,5 +1,5 @@
-page { background: #f5f7f8; color: #17212b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-.app-shell { height: 100vh; display: flex; flex-direction: column; background: #f5f7f8; }
+page { background: #fff; color: #17212b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.app-shell { height: 100vh; display: flex; flex-direction: column; background: #fff; }
 .screen-scroll { flex: 1; min-height: 0; height: auto; }
 .demo-banner { height: 44rpx; display: flex; justify-content: center; align-items: center; gap: 10rpx; color: #8a4b00; background: #fff2dd; font-size: 19rpx; font-weight: 700; letter-spacing: .3rpx; }
 .demo-dot { font-size: 13rpx; color: #ed7900; }
