@@ -87,3 +87,40 @@ export const createScheduledPayment = (data, draft) => {
   clearDraft();
   return payment;
 };
+
+export const createScheduledPayments = (data, draft) => {
+  const employeeIds = [...new Set(draft.employeeIds || [])];
+  const employees = employeeIds.map((id) => data.employees.find((item) => item.id === id && item.active)).filter(Boolean);
+  const start = new Date(`${draft.startDate}T00:00:00`);
+  if (!employeeIds.length || employees.length !== employeeIds.length || !draft.startDate || Number.isNaN(start.getTime())) {
+    throw new Error('Sélectionnez des bénéficiaires actifs et une date de début valide.');
+  }
+  if (draft.endDate && draft.endDate < draft.startDate) throw new Error('La date de fin doit suivre la date de début.');
+
+  const stamp = Date.now();
+  const payments = employees.map((employee, index) => {
+    const frequency = employee.frequency || 'Mensuelle';
+    const due = nextDueDate(employee, start, frequency);
+    return {
+      id: `demo-bulk-${stamp}-${index}`,
+      employeeId: employee.id,
+      name: employee.name,
+      avatarText: employee.avatarText || initials(employee.name),
+      avatarImage: employee.avatarImage || '',
+      phone: employee.phone,
+      amount: Number(employee.amount),
+      date: isoDay(due),
+      dateLabel: dateLabel(due),
+      status: 'scheduled',
+      statusLabel: 'Programmé · démo',
+      ref: `DEMO-B${String(stamp).slice(-6)}-${index + 1}`,
+      fee: null,
+      mode: 'Programmation groupée de démonstration',
+    };
+  });
+
+  data.payments = [...payments, ...(data.payments || [])];
+  saveData(data);
+  clearDraft();
+  return payments;
+};

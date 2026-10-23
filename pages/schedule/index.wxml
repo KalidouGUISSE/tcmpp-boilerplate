@@ -10,7 +10,7 @@
           mode="aspectFit"
         />
       </view>
-      <text class="page-title">Programmer un paiement</text>
+      <text class="page-title">{{multiple ? 'Programmer des paiements' : 'Programmer un paiement'}}</text>
     </view>
 
     <view class="stepper">
@@ -33,9 +33,19 @@
     <view class="form-content">
       <view class="field">
         <text class="field-label">
-          Bénéficiaire <text class="required">*</text>
+          Bénéficiaire(s) <text class="required">*</text>
         </text>
-        <picker
+        <view class="multiple-toggle" bindtap="toggleMultiple">
+          <view class="checkbox {{multiple ? 'checked' : ''}}">{{multiple ? '✓' : ''}}</view>
+          <view class="multiple-toggle-copy"><text>Programmer plusieurs bénéficiaires</text><text class="row-sub">Chaque bénéficiaire garde son montant habituel.</text></view>
+        </view>
+        <view wx:if="{{multiple}}" class="multiple-beneficiaries">
+          <view wx:for="{{activeEmployees}}" wx:key="id" class="multiple-beneficiary {{item.selected ? 'multiple-beneficiary-selected' : ''}}" data-id="{{item.id}}" bindtap="toggleBeneficiary">
+            <view class="checkbox {{item.selected ? 'checked' : ''}}">{{item.selected ? '✓' : ''}}</view>
+            <view class="multiple-beneficiary-copy"><text class="row-title">{{item.name}}</text><text class="row-sub">{{item.amountLabel}} FCFA · {{item.frequency}}</text></view>
+          </view>
+        </view>
+        <picker wx:else
           mode="selector"
           range="{{activeEmployees}}"
           range-key="name"
@@ -47,7 +57,7 @@
             <text>⌄</text>
           </view>
         </picker>
-        <text wx:if="{{selectedEmployee}}" class="row-sub">
+        <text wx:if="{{!multiple && selectedEmployee}}" class="row-sub">
           {{selectedEmployee.phone}}
         </text>
         <text class="link add-inline" bindtap="addEmployee">
@@ -60,11 +70,11 @@
         </text>
       </view>
 
-      <view class="field">
-        <text class="field-label">
+      <view wx:if="{{!multiple}}" class="field">
+        <text wx:if="{{!multiple}}" class="field-label">
           Montant <text class="required">*</text>
         </text>
-        <view class="amount-input">
+        <view wx:if="{{!multiple}}" class="amount-input">
           <input
             type="digit"
             placeholder="Ex. : 100 000"
@@ -76,11 +86,11 @@
         </view>
       </view>
 
-      <view class="field">
-        <text class="field-label">
+      <view wx:if="{{!multiple}}" class="field">
+        <text wx:if="{{!multiple}}" class="field-label">
           Fréquence <text class="required">*</text>
         </text>
-        <view class="frequency-row">
+        <view wx:if="{{!multiple}}" class="frequency-row">
           <view
             class="frequency-pill {{draft.frequency === 'Journalier' ? 'chosen' : ''}}"
             data-frequency="Journalier"
@@ -150,11 +160,11 @@
       </view>
 
       <view class="next-due-note">
-        Prochaine échéance estimée :
-        <text>{{nextDueLabel || 'Sélectionnez un bénéficiaire'}}</text>
+        <text wx:if="{{multiple}}">Les paiements utiliseront le montant et la fréquence habituels de chaque bénéficiaire.</text>
+        <text wx:else>Prochaine échéance estimée : <text>{{nextDueLabel || 'Sélectionnez un bénéficiaire'}}</text></text>
       </view>
     </view>
   </scroll-view>
 
-  <button class="primary-button bottom-action" bindtap="continue">Vérifier les informations</button>
+  <button class="primary-button bottom-action" bindtap="continue">{{multiple ? 'Vérifier les paiements' : 'Vérifier les informations'}}</button>
 </view>

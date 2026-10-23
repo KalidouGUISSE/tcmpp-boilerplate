@@ -1,12 +1,12 @@
 page {
   height: 100%;
-  background: #f5f7f8;
+  background: #fff;
   color: #17212b;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.app-shell { height: 100vh; display: flex; flex-direction: column; background: #f5f7f8; }
-.screen-scroll { display: block; flex: 1; min-height: 0; height: auto; white-space: normal; }
+.app-shell { height: 100vh; display: flex; flex-direction: column; background: #fff; }
+.screen-scroll { display: block; flex: 1; min-height: 0; height: auto; background: #fff; white-space: normal; }
 .page-header { min-height: 102rpx; padding: 0 28rpx; display: flex; align-items: center; background: #fff; border-bottom: 1rpx solid #edf0f2; }
 .back-button { width: 56rpx; height: 56rpx; flex: none; display: flex; align-items: center; justify-content: center; }
 .back-icon { width: 40rpx; height: 40rpx; }
@@ -43,6 +43,6 @@ page {
 .outline-button { height: 80rpx; margin-top: 12rpx; padding: 0 24rpx; border: 2rpx solid #b7d9ca; border-radius: 18rpx; background: #fff; color: #087d57; font-size: 23rpx; font-weight: 700; line-height: 78rpx; }
 .outline-button::after, .primary-button::after { border: 0; }
 
-.employee-footer { flex-shrink: 0; padding: 12rpx 28rpx 18rpx; border-top: 1rpx solid #edf0f2; background: #f5f7f8; }
+.employee-footer { flex-shrink: 0; padding: 12rpx 28rpx 18rpx; border-top: 1rpx solid #edf0f2; background: #fff; }
 .add-beneficiary-button { width: 100%; height: 92rpx; margin: 0; padding: 0 18rpx; display: flex; align-items: center; justify-content: center; box-sizing: border-box; border: 0; border-radius: 22rpx; background: #f47700; color: #fff; font-size: 27rpx; font-weight: 700; line-height: 92rpx; box-shadow: 0 7rpx 15rpx rgba(244, 119, 0, .14); }
 .button-icon { width: 32rpx; height: 32rpx; flex: none; margin-right: 12rpx; filter: brightness(0) invert(1); }

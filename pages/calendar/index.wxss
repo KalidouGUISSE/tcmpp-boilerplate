@@ -1,1 +1,34 @@
-﻿@import "../../utils/autopay/common.wxss";
+page { height: 100%; background: #fff; color: #17212b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.app-shell { height: 100vh; display: flex; flex-direction: column; background: #fff; }
+.screen-scroll { display: block; flex: 1; min-height: 0; height: auto; background: #fff; white-space: normal; }
+.page-header { min-height: 102rpx; padding: 0 28rpx; display: flex; align-items: center; background: #fff; border-bottom: 1rpx solid #edf0f2; }
+.back-button { width: 56rpx; height: 56rpx; flex: none; display: flex; align-items: center; justify-content: center; }
+.back-icon { width: 40rpx; height: 40rpx; }
+.page-title { flex: 1; margin-left: 15rpx; color: #182f3d; font-size: 31rpx; font-weight: 700; }
+
+.month-toolbar { min-height: 82rpx; padding: 10rpx 28rpx 0; display: flex; align-items: center; background: #fff; }
+.month-arrow { width: 60rpx; height: 60rpx; flex: none; display: flex; align-items: center; justify-content: center; }
+.month-icon { width: 36rpx; height: 36rpx; filter: brightness(0) saturate(100%) invert(45%) sepia(90%) saturate(1618%) hue-rotate(1deg) brightness(101%) contrast(105%); }
+.month-name { flex: 1; margin-left: 8rpx; color: #172b3a; font-size: 31rpx; font-weight: 700; }
+
+.calendar-grid { padding: 8rpx 22rpx 18rpx; display: flex; flex-wrap: wrap; background: #fff; }
+.weekday { width: 14.285%; height: 44rpx; color: #74838c; font-size: 20rpx; font-weight: 600; text-align: center; }
+.calendar-day { position: relative; width: 14.285%; height: 62rpx; margin: 3rpx 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #344a56; font-size: 22rpx; }
+.calendar-day.outside { color: #ccd3d6; }
+.calendar-day.day-selected { background: #f47700; color: #fff; font-weight: 700; }
+.calendar-day.day-today:not(.day-selected) { border: 2rpx solid #087d57; }
+.day-dot { position: absolute; bottom: 5rpx; width: 7rpx; height: 7rpx; border-radius: 50%; background: #087d57; }
+.calendar-day.day-selected .day-dot { background: #fff; }
+
+.section-heading { min-height: 66rpx; padding: 12rpx 30rpx 8rpx; display: flex; align-items: center; justify-content: space-between; border-top: 1rpx solid #f0f2f3; color: #203844; font-size: 25rpx; font-weight: 700; }
+.muted { color: #73818d; font-size: 22rpx; font-weight: 400; }
+.calendar-payment-row { min-height: 112rpx; margin: 0 28rpx; padding: 14rpx 0; display: flex; align-items: center; border-bottom: 1rpx solid #edf0f2; }
+.calendar-payment-date { width: 82rpx; flex: none; display: flex; align-items: center; flex-direction: column; }
+.calendar-payment-day { width: 48rpx; height: 48rpx; border-radius: 50%; background: #f47700; color: #fff; font-size: 22rpx; font-weight: 700; line-height: 48rpx; text-align: center; }
+.calendar-payment-month { margin-top: 3rpx; color: #80909a; font-size: 18rpx; }
+.calendar-payment-main { min-width: 0; flex: 1; display: flex; flex-direction: column; }
+.row-title { overflow: hidden; color: #1c3443; font-size: 24rpx; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.row-sub { margin-top: 5rpx; color: #788791; font-size: 21rpx; }
+.badge { flex: none; margin-left: 10rpx; padding: 7rpx 12rpx; border-radius: 24rpx; background: #dcf7e9; color: #148052; font-size: 18rpx; font-weight: 700; }
+.empty-card { margin: 16rpx 28rpx; padding: 24rpx; border-radius: 18rpx; background: #f7f9f9; text-align: center; }
+.mode-note { margin: 12rpx 28rpx 20rpx; padding: 12rpx 14rpx; border-radius: 12rpx; background: #fff3df; color: #81520b; font-size: 18rpx; line-height: 1.4; }

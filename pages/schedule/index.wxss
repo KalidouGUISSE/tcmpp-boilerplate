@@ -1,2 +1,13 @@
 ﻿@import "../../utils/autopay/common.wxss";
 .schedule-back-button { width: 56rpx; }
+.multiple-toggle { display: flex; align-items: center; margin: 8rpx 0 12rpx; padding: 15rpx; border: 1rpx solid #e4eaec; border-radius: 16rpx; background: #fff; }
+.multiple-toggle .checkbox { margin-right: 14rpx; }
+.multiple-toggle-copy { min-width: 0; display: flex; flex-direction: column; }
+.multiple-toggle-copy text:first-child { color: #263d4b; font-size: 23rpx; font-weight: 700; }
+.multiple-toggle-copy .row-sub { margin-top: 4rpx; }
+.multiple-beneficiaries { max-height: 320rpx; overflow-y: auto; margin-bottom: 12rpx; border: 1rpx solid #e4eaec; border-radius: 16rpx; background: #fff; }
+.multiple-beneficiary { display: flex; align-items: center; padding: 14rpx 16rpx; border-bottom: 1rpx solid #edf0f2; }
+.multiple-beneficiary:last-child { border-bottom: 0; }
+.multiple-beneficiary .checkbox { margin-right: 14rpx; }
+.multiple-beneficiary-copy { min-width: 0; display: flex; flex: 1; flex-direction: column; }
+.multiple-beneficiary-selected { background: #fffaf5; }

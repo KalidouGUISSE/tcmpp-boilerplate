@@ -45,12 +45,12 @@
       </view>
     </view>
   </scroll-view>
-
+<!-- 
   <view class="employee-footer">
     <button class="primary-button add-beneficiary-button" bindtap="addEmployee">
       <image class="button-icon" src="/icons/Actions/plus.svg" mode="aspectFit" />
       <text>Ajouter un bénéficiaire</text>
     </button>
-  </view>
+  </view> -->
   <autopay-tabs active="employees" />
 </view>
